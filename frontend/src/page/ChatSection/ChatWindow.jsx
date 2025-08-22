@@ -19,6 +19,9 @@ import useUserStore from "../../store/useUserStore";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { useChatStore } from "../../store/chatStore";
 import whatsappImage from '../../images/whatsapp_image.png'
+import VideoCallManager from "../VideoCall/VideoCallManager";
+import { getSocket } from "../../services/chat.service";
+import useVideoCallStore from "../../store/videoCallStore";
 
 const isValidDate = (date) => {
   return date instanceof Date && !isNaN(date);
@@ -37,6 +40,7 @@ export default function ChatWindow({ selectedContact, setSelectedContact }) {
 
   const { theme } = useThemeStore();
   const { user } = useUserStore();
+  const socket = getSocket();
 
   const {
     messages,
@@ -221,6 +225,24 @@ export default function ChatWindow({ selectedContact, setSelectedContact }) {
   const handleReaction = (messageId, emoji) => {
     addReaction(messageId, emoji);
   };
+
+  const handleVideoCall = () =>{
+    if(selectedContact && online) {
+      const {initiateCall} = useVideoCallStore.getState();
+
+      const avatar = selectedContact?.profilePicture;
+
+      initiateCall (
+        selectedContact?._id,
+        selectedContact?.username,
+        avatar,
+        "video"
+      )
+    }else{
+      alert("User is offline. Cannot initiate the call")
+    }
+  }
+
   if (!selectedContact) {
     return (
       <div className="flex-1  flex flex-col items-center justify-center mx-auto h-screen text-center">
@@ -258,6 +280,8 @@ export default function ChatWindow({ selectedContact, setSelectedContact }) {
   }
 
   return (
+
+    <>
     <div className="flex-1 h-screen w-full flex flex-col">
       <div
         className={`p-4 ${
@@ -303,8 +327,8 @@ export default function ChatWindow({ selectedContact, setSelectedContact }) {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button className="focus:outline-none">
-            <FaVideo className="h-5 w-5" />
+          <button className="focus:outline-none" onClick={handleVideoCall} title={online ? "Start video Call" : "User is offline"}>
+            <FaVideo className="h-5 w-5 text-green-500 hover:text-green-600" />
           </button>
           <button className="focus:outline-none">
             <FaEllipsisV className="h-5 w-5" />
@@ -450,5 +474,9 @@ export default function ChatWindow({ selectedContact, setSelectedContact }) {
         </button>
       </div>
     </div>
+
+    <VideoCallManager socket={socket} />
+
+    </>
   );
 }
