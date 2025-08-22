@@ -74,7 +74,7 @@ TalkOn ChatApp/
 
 ```bash
 git clone url
-cd TalkOn ChatApp
+cd TalkOn-ChatApp
 
 
 cd backend
