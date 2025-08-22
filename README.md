@@ -1,12 +1,12 @@
-# 💬 WhatsApp Clone - Full Stack Realtime Chat App
+# 💬 TalkOn ChatApp - Full Stack Realtime Chat App
 
-A production-ready full-stack WhatsApp Clone built with **React js** and **Node.js (Express + MongoDB)**. It includes powerful real-time features using **Socket.IO**, secure **authentication via mobile (Twilio)** and **email OTP (Nodemailer)**, plus rich chat functionalities like media sharing, reactions, themes, and more.
+A production-ready full-stack TalkOn ChatApp built with **React js** and **Node.js (Express + MongoDB)**. It includes powerful real-time features using **Socket.IO**, secure **authentication via mobile (Twilio)** and **email OTP (Nodemailer)**, plus rich chat functionalities like media sharing, reactions, themes, and more.
 
 ---
 
 
 ## 📁 Project Structure
-whatsapp-clone/
+TalkOn ChatApp/
 ├── frontend/ # Frontend code - React js
 ├── backend/ # Backend code - Express + MongoDB
 ├── .gitignore # Git ignore file
@@ -70,11 +70,11 @@ whatsapp-clone/
 
 ## 🔧 Setup Guide
 
-### 1. Clone the Project
+### 1. build the Project
 
 ```bash
 git clone url
-cd whatsapp-clone
+cd TalkOn ChatApp
 
 
 cd backend
