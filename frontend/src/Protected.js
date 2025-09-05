@@ -5,27 +5,27 @@ import { checkUserAuth } from './services/auth.service';
 import Loader from './utils/Loader';
 
 export const ProtectedRoute = () => {
-  const location = useLocation(); // Get current location to redirect back after login
-  const [isChecking, setIsChecking] = useState(true); // State to show loader while verifying auth
+  const location = useLocation(); 
+  const [isChecking, setIsChecking] = useState(true); 
   
-  const { isAuthenticated, setUser, clearUser } = useUserStore(); // Access user auth state and actions from your store
+  const { isAuthenticated, setUser, clearUser } = useUserStore(); 
 
   useEffect(() => {
     const verifyAuth = async () => {
       try {
-        // ⏳ API call to check if the user is authenticated (e.g., via cookie or token)
+        
         const result = await checkUserAuth();
         
         if (result?.isAuthenticated) {
-          setUser(result?.user); // ✅ User is authenticated → update store with user info
+          setUser(result?.user); 
         } else {
-          clearUser(); // ❌ Not authenticated → clear user state
+          clearUser();
         }
       } catch (error) {
         console.error("Error checking authentication:", error);
-        clearUser(); // On error, assume unauthenticated
+        clearUser(); 
       } finally {
-        setIsChecking(false); // ✅ Done checking → hide loader
+        setIsChecking(false); 
       }
     };
 
@@ -33,27 +33,27 @@ export const ProtectedRoute = () => {
   }, [setUser, clearUser]);
 
   if (isChecking) {
-    return <Loader/>; // ⏳ Show loader while checking auth status
+    return <Loader/>; 
   }
 
   if (!isAuthenticated) {
-    // ❌ User not authenticated → redirect to login page
+    
     return <Navigate to="/user-login" state={{ from: location }} replace />;
   }
 
-  // ✅ User is authenticated → render protected route's children
+  
   return <Outlet />;
 };
 
 
 export const PublicRoute = () => {
-  const isAuthenticated = useUserStore(state => state.isAuthenticated); // Get auth state from store
+  const isAuthenticated = useUserStore(state => state.isAuthenticated); 
 
   if (isAuthenticated) {
-    // ✅ If user is already logged in → redirect away from public page (e.g., login or register)
+   
     return <Navigate to="/" replace />;
   }
 
-  // ❌ User not logged in → allow access to public routes
+
   return <Outlet />;
 };

@@ -1,6 +1,4 @@
 const express = require('express');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 const chatController = require('../controllers/chatController');
 const authenticate = require('../middlerwares/authMiddleware');
 const { multerMiddleware } = require('../../config/cloudinaryConfig');

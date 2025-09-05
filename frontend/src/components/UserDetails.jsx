@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 export default function UserDetails() {
   const [name, setName] = useState("");
-  const [about, setAbout] = useState("Hey there! I am using WhatsApp.");
+  const [about, setAbout] = useState("Hey there! I am using TalkOn.");
   const [profileImage, setProfileImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [showAvatarModal, setShowAvatarModal] = useState(false);

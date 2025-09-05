@@ -3,7 +3,6 @@ import Sidebar from './Sidebar'
 import ChatWindow from '../page/ChatSection/ChatWindow'
 import useLayoutStore from '../store/layoutStore'
 import useThemeStore from '../store/themeStore'
-import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Layout({ children, isThemeDialogOpen, toggleThemeDialog, isStatusPreviewOpen, statusPreviewContent }) {

@@ -45,10 +45,10 @@ const ChatList = ({ contacts }) => {
           <input
             type="text"
             placeholder="Search or start new chat"
-            className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+            className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
               theme === "dark"
-                ? "bg-gray-800 text-white border-gray-700 placeholder-gray-500"
-                : "bg-gray-100 text-black border-gray-200 placeholder-gray-400"
+                ? "bg-gray-800 text-white border-gray-700 placeholder-gray-500 focus:ring-gray-500"
+                : "bg-gray-100 text-black border-gray-200 placeholder-gray-400 focus:ring-green-100"
             }`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

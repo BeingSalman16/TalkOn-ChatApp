@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaWhatsapp, FaLock, FaUser, FaCamera, FaCheck, FaPlus, FaArrowLeft, FaChevronDown } from 'react-icons/fa'
+import { FaUser, FaCheck, FaPlus, FaArrowLeft, FaChevronDown } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -14,6 +14,7 @@ import useUserStore from '../../store/useUserStore'
 import useThemeStore from '../../store/themeStore'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../../utils/Spinner'
+import { AiOutlineDingtalk } from 'react-icons/ai';
 
 // Validation schemas
 const loginValidationSchema = yup.object().shape({
@@ -155,7 +156,7 @@ const {
 
       if (user?.username && user?.profilePicture) {
         setUser(user)
-        toast.success('Welcome back on WhatsApp')
+        toast.success('Welcome back on TalkOn')
         navigate('/')
         resetLoginState()
       } else {
@@ -189,7 +190,7 @@ const {
         formData.append('profilePicture', selectedAvatar)
       }
       await updateUserProfile(formData)
-      toast.success('welcome back on whatsapp')
+      toast.success('welcome back on TalkOn')
       navigate('/')
       resetLoginState()
     } catch (error) {
@@ -210,14 +211,24 @@ const {
     }
   }
 
-  const ProgressBar = () => (
-    <div className={`w-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'} rounded-full h-2.5 mb-6`}>
-      <div
-        className="bg-green-500 h-2.5 rounded-full transition-all duration-500 ease-in-out"
-        style={{ width: `${(step / 3) * 100}%` }}
-      ></div>
-    </div>
-  )
+const ProgressBar = () => (
+  <div
+    className={`w-full ${
+      theme === 'dark' ? 'bg-white/10' : 'bg-gray-200/80'
+    } rounded-full h-4 mb-6 shadow-inner backdrop-blur-md overflow-hidden`}
+  >
+    <div
+      className={`h-4 rounded-full transition-all duration-700 ease-in-out shadow-lg ${
+        theme === 'dark'
+          ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-400'
+          : 'bg-gradient-to-r from-blue-500 via-cyan-400 to-green-400'
+      }`}
+      style={{ width: `${(step / 3) * 100}%` }}
+    ></div>
+  </div>
+);
+
+
 
   const handleGoBack = () => {
     setStep(1)
@@ -239,11 +250,11 @@ const {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
-          className="w-24 h-24 bg-green-500 rounded-full mx-auto mb-6 flex items-center justify-center"
+          className="w-24 h-24 bg-blue-800 rounded-full mx-auto mb-6 flex items-center justify-center"
         >
-          <FaWhatsapp className="w-16 h-16 text-white" />
+          <AiOutlineDingtalk className="w-16 h-16 text-white" />
         </motion.div>
-        <h1 className={`text-3xl font-bold text-center mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>WhatsApp Login</h1>
+        <h1 className={`text-3xl font-bold text-center mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>TalkOn Login</h1>
 
         <ProgressBar />
 
@@ -257,7 +268,7 @@ const {
                 <div className="relative w-1/3">
                   <button
                     type="button"
-                    className={`flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center ${theme === 'dark' ? 'text-white bg-gray-700 border-gray-600' : 'text-gray-900 bg-gray-100 border-gray-300'} border rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100`}
+                    className={`flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center ${theme === 'dark' ? 'text-white bg-gray-700 border-gray-600 focus:ring-gray-500' : 'text-gray-900 bg-gray-100 border-gray-300 focus:ring-gray-200'} border rounded-s-lg focus:ring-2 focus:outline-none`}
                     onClick={() => setShowDropdown(!showDropdown)}
                   >
                     <span>{selectedCountry.flag} {selectedCountry.dialCode}</span>
@@ -271,7 +282,7 @@ const {
                           placeholder="Search countries..."
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
-                          className={`w-full px-2 py-1 border ${theme === 'dark' ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300'} rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500`}
+                          className={`w-full px-2 py-1 border ${theme === 'dark' ? 'bg-gray-600 border-gray-500 text-white focus:ring-gray-500' : 'bg-white border-gray-300 focus:ring-gray-200'} rounded-md text-sm focus:outline-none focus:ring-2`}
                         />
                       </div>
                       {filteredCountries.map((country) => (
@@ -295,7 +306,7 @@ const {
                   {...loginRegister('phoneNumber')}
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  className={`w-2/3 px-4 py-2 border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                  className={`w-2/3 px-4 py-2 border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white focus:ring-gray-500' : 'bg-white border-gray-300 focus:ring-gray-200 text-black'} rounded-md focus:outline-none focus:ring-2 ${
                     loginErrors.phoneNumber ? 'border-red-500' : ''
                   }`}
                   placeholder="Phone Number"
@@ -352,7 +363,7 @@ const {
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleOtpChange(index, e.target.value)}
-                  className={`w-12 h-12 text-center border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                  className={`w-12 h-12 text-center border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white focus:ring-gray-500' : 'bg-white border-gray-400 focus:ring-gray-200 text-black'} rounded-md focus:outline-none focus:ring-2 ${
                     otpErrors.otp ? 'border-red-500' : ''
                   }`}
                 />
@@ -371,7 +382,7 @@ const {
             <button
               type="button"
               onClick={handleGoBack}
-              className={`w-full mt-2 ${theme === 'dark' ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} py-2 rounded-md hover:bg-gray-300 transition flex items-center justify-center`}
+              className={`w-full mt-2 ${theme === 'dark' ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} py-2 rounded-md transition flex items-center justify-center`}
             >
               <FaArrowLeft className="mr-2" />
               Wrong number? Go back
@@ -421,7 +432,7 @@ const {
                 {...profileRegister("username", { required: "Username is required" })}
                 type="text"
                 placeholder="Username"
-                className={`w-full pl-10 pr-3 py-2 border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-lg`}
+                className={`w-full pl-10 pr-3 py-2 border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white focus:ring-gray-500' : 'bg-white border-gray-300 focus:ring-gray-200'} rounded-md focus:outline-none focus:ring-2 text-lg`}
               />
               {profileErrors.username && <p className="text-red-500 text-sm mt-1">{profileErrors.username.message}</p>}
             </div>

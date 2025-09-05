@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Layout from './Layout'
 import ChatList from '../page/ChatSection/ChatList'
-import useLayoutStore from '../store/layoutStore'
 import { getAllUsers } from '../services/auth.service'
 import { useChatStore } from '../store/chatStore'
 

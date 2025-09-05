@@ -44,7 +44,7 @@ exports.createStatus = async (req, res) => {
       .populate("viewers", "username profilePicture")
 
 
-    // ✅ EMIT SOCKET EVENT
+    // EMIT SOCKET EVENT
     if (req.io && req.socketUserMap) {
       // Broadcast to all connected users except the creator
       for (const [connectedUserId, socketId] of req.socketUserMap) {
@@ -100,7 +100,7 @@ exports.viewStatus = async (req, res) => {
         .populate("user", "username profilePicture")
         .populate("viewers", "username profilePicture")
 
-      // ✅ EMIT SOCKET EVENT
+      // EMIT SOCKET EVENT
       if (req.io && req.socketUserMap) {
         const statusOwnerSocketId = req.socketUserMap.get(status.user._id.toString())
         
@@ -147,7 +147,7 @@ exports.deleteStatus = async (req, res) => {
     await status.deleteOne()
     console.log('Status deleted from database')
 
-    // ✅ EMIT SOCKET EVENT
+    // EMIT SOCKET EVENT
     if (req.io && req.socketUserMap) {
       // Broadcast to all connected users except the deleter
       for (const [connectedUserId, socketId] of req.socketUserMap) {

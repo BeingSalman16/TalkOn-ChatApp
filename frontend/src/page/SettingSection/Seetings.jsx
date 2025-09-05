@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { FaBell, FaSearch, FaUser, FaQuestionCircle, FaMoon, FaSun, FaSignOutAlt, FaComment } from "react-icons/fa";
+import React, { useState } from "react";
+import {FaSearch, FaUser, FaQuestionCircle, FaMoon, FaSun, FaSignOutAlt, FaComment } from "react-icons/fa";
 import useThemeStore from "../../store/themeStore";
 import Layout from "../../components/Layout";
 import { Link } from "react-router-dom";

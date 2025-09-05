@@ -30,7 +30,7 @@ connectDB();
 
 const io = initializeSocket(server);
 
-// ✅ CRITICAL: Apply socket middleware BEFORE routes
+// CRITICAL: Apply socket middleware BEFORE routes
 app.use((req, res, next) => {
     req.io = io;
     req.socketUserMap = io.socketUserMap; // This is the key missing piece!

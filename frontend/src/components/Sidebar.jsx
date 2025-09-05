@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { FaWhatsapp, FaUser, FaCog, FaUserCircle } from 'react-icons/fa';
+import {  FaCog, FaUserCircle } from 'react-icons/fa';
 import { MdRadioButtonChecked } from 'react-icons/md'; // New icon for status
 import useLayoutStore from '../store/layoutStore';
 import useUserStore from '../store/useUserStore';
 import useThemeStore from '../store/themeStore';
+import { AiOutlineDingtalk } from 'react-icons/ai';
 
 const Sidebar = () => {
     const location = useLocation();
@@ -41,7 +42,7 @@ const Sidebar = () => {
     const sidebarContent = (
         <>
             <Link to="/" className={`${isMobile ? '' : 'mb-8'} ${activeTab === 'chats' && 'bg-gray-300 shadow-sm p-2 rounded-full'} focus:outline-none`}>
-            <FaWhatsapp
+            <AiOutlineDingtalk
              className={`h-6 w-6 ${
             activeTab === 'chats' 
                 ? (theme === 'dark' ? 'text-gray-800 ' : '') 

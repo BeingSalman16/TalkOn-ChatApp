@@ -52,7 +52,7 @@ const verifyOtp = async (req, res) => {
   try {
     let user;
 
-    // 🌐 Email verification logic
+    // Email verification logic
     if (email) {
       user = await User.findOne({ email });
       if (!user) return response(res, 400, "User not found");
@@ -72,7 +72,7 @@ const verifyOtp = async (req, res) => {
       await user.save();
     }
 
-    // 📞 Phone verification logic
+    // Phone verification logic
     else {
       if (!phoneNumber || !phoneSuffix) {
         return response(res, 400, "Phone number and suffix are required");
@@ -91,7 +91,7 @@ const verifyOtp = async (req, res) => {
       await user.save();
     }
 
-    // ✅ Token and cookie logic (common)
+    // Token and cookie logic (common)
     const token = generateToken(user._id);
     res.cookie("auth_token", token, {
       httpOnly: true,

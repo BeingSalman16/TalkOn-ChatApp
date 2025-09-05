@@ -4,14 +4,14 @@ import { getSocket } from "../services/chat.service";
 
 // Zustand store for managing chat-related state and actions
 export const useChatStore = create((set, get) => ({
-  // ======== State Variables ========
-  conversations: [], // List of all conversations
-  currentConversation: null, // Currently selected conversation ID
-  messages: [], // Messages of the current conversation
-  loading: false, // Loader for API calls
-  error: null, // Error holder
-  onlineUsers: new Map(), // userId -> { isOnline, lastSeen }
-  typingUsers: new Map(), // conversationId -> Set of userIds who are typing
+  
+  conversations: [], 
+  currentConversation: null, 
+  messages: [], 
+  loading: false, 
+  error: null, 
+  onlineUsers: new Map(), 
+  typingUsers: new Map(), 
 
   // ======== Socket Event Listeners Setup ========
   initSocketListeners: () => {
